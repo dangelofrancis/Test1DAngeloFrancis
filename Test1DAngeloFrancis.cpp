@@ -59,16 +59,34 @@ int main()
 		} while (advancedPay < 0);
 
 		comission = monthlySales * comissionRate;
-		remainingPay = (comission + monthlySales) - advancedPay;
+		if (comission < advancedPay)
+		{
+			remainingPay = advancedPay - comission;
+		}
+		else
+		{
+			remainingPay = comission - advancedPay;
+		}
 	
 		cout << fixed << setprecision(2);
-		cout << "Pay Results" << endl;
+		cout << endl << "Pay Results" << endl;
 		cout << "----------" << endl;
 		cout << "Sales: $" << monthlySales << endl;
 		cout << "Comission Rate: " << comissionRate * 100 << "%" << endl;
 		cout << "Comission: $" << comission << endl;
 		cout << "Advanced Pay: $" << advancedPay << endl;
-		cout << "Remaining Pay: $" << remainingPay << endl;
+		
+		if (comission < advancedPay)
+		{
+			cout << "Remaining Pay: $" << remainingPay << " (Pay back to Crazy Al's)";
+		}
+		else
+		{
+			cout << "Remaining Pay: $" << remainingPay << endl;
+		}
+
+		cout << endl << endl << "Would you like to keep going? Enter YES or NO (case sensitive):";
+		cin >> keepGoing;
 	}
 	return 0;
 }
